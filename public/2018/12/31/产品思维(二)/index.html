@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="产品经理," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="谈服务不谈产品如果大家总是在谈产品，会很容易以产品经理为中心，就想着要做一个产品来改变世界。但是如果出发点是提供一个服务，就会以用户获得和用户满足为中心来做设计，这两种方式的目的和实现路径完全不一样。 确定性十分重要。我们都是有感觉的，人生如此不确定，所以当你看到有一个东西非常确定的时候，是让人留恋的。不确定的东西是没有办法让你投入时间或者持续依赖的。做产品需要持续地提供用户可以依赖的确定性。 企">
+<meta name="keywords" content="产品经理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="产品思维（二）">
+<meta property="og:url" content="http://yoursite.com/2018/12/31/产品思维(二)/index.html">
+<meta property="og:site_name" content="Coyote">
+<meta property="og:description" content="谈服务不谈产品如果大家总是在谈产品，会很容易以产品经理为中心，就想着要做一个产品来改变世界。但是如果出发点是提供一个服务，就会以用户获得和用户满足为中心来做设计，这两种方式的目的和实现路径完全不一样。 确定性十分重要。我们都是有感觉的，人生如此不确定，所以当你看到有一个东西非常确定的时候，是让人留恋的。不确定的东西是没有办法让你投入时间或者持续依赖的。做产品需要持续地提供用户可以依赖的确定性。 企">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-31T04:31:27.743Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="产品思维（二）">
+<meta name="twitter:description" content="谈服务不谈产品如果大家总是在谈产品，会很容易以产品经理为中心，就想着要做一个产品来改变世界。但是如果出发点是提供一个服务，就会以用户获得和用户满足为中心来做设计，这两种方式的目的和实现路径完全不一样。 确定性十分重要。我们都是有感觉的，人生如此不确定，所以当你看到有一个东西非常确定的时候，是让人留恋的。不确定的东西是没有办法让你投入时间或者持续依赖的。做产品需要持续地提供用户可以依赖的确定性。 企">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/31/产品思维(二)/"/>
+
+
+
+
+
+  <title>产品思维（二） | Coyote</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Coyote</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">奔跑中的IT男</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/31/产品思维(二)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Coyote">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coyote">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">产品思维（二）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-31T12:32:57+08:00">
+                2018-12-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/产品/" itemprop="url" rel="index">
+                    <span itemprop="name">产品</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="谈服务不谈产品"><a href="#谈服务不谈产品" class="headerlink" title="谈服务不谈产品"></a>谈服务不谈产品</h3><p>如果大家总是在谈产品，会很容易以产品经理为中心，就想着要做一个产品来改变世界。但是如果出发点是提供一个服务，就会以用户获得和用户满足为中心来做设计，这两种方式的目的和实现路径完全不一样。</p>
+<p>确定性十分重要。我们都是有感觉的，人生如此不确定，所以当你看到有一个东西非常确定的时候，是让人留恋的。不确定的东西是没有办法让你投入时间或者持续依赖的。做产品需要持续地提供用户可以依赖的确定性。</p>
+<h3 id="企业是效率分工的产物，建立效率优势才有竞争力"><a href="#企业是效率分工的产物，建立效率优势才有竞争力" class="headerlink" title="企业是效率分工的产物，建立效率优势才有竞争力"></a>企业是效率分工的产物，建立效率优势才有竞争力</h3><p>做产品是建设一套系统能力，提供并保障确定性，而效率是这个系统能力的一个核心指标。</p>
+<p>雷军说过：“互联网思维里最关键的是两点：第一是用户体验，第二是效率。小米真正的护城河是效率，而小米真正要做的就是效率革命”。从小米社区的用户参与感到小米手机的All In再到利用个人流量快速拓展的小米小店，如今小米努力打造自己的三级火箭模式，来对抗vivo和oppo的明星流量模式，用“体”打“点”，值得研究和学习。</p>
+<h3 id="版本规划能力是产品经理的重要能力。"><a href="#版本规划能力是产品经理的重要能力。" class="headerlink" title="版本规划能力是产品经理的重要能力。"></a>版本规划能力是产品经理的重要能力。</h3><p>产品第一个版本要简单、直接、切中要点、直指人心。</p>
+<p>迭代就是小步快跑，把最内核的部分先放出来，不断优化、小范围试错。让互联网产品在互联网上生长，不要憋大招，没有必要把所有功能全部做好再放出来，重要的是核心功能点，附加功能可以一步步来。微信从最早的通讯工具到社交平台再到如今的移动生活场景，依靠腾讯强大的系统能力，七年间历经迭代几百次，慢慢演变为移动商业帝国。</p>
+<p>人生也是迭代的产物，从一个好的内核开始，一个个目标的持续迭代加上每一次微小的选择，会成就我们的人生。今天在一个什么样的点位上没有那么重要，重要的是在未来的几年里，用什么样的方式持续迭代。</p>
+<h3 id="领导力"><a href="#领导力" class="headerlink" title="领导力"></a>领导力</h3><p>在日常状态下，大家做流程、分工、项目进度、质量评估，这个叫项目管理。在面对巨大压力，甚至是生死存亡的时间点时，在一大堆事情里找到关键任务，带领所有人穿越生死，这个是领导力。</p>
+<p>腾讯用风控能力区分职级，阿里巴巴用带领大家穿越生死的能力定义领导力。</p>
+<p>富贵险中求，平原地带的竞争，一定是体量大的赢，先到的赢，不要命的赢。</p>
+<p>机会、资本、野心、人才云集的今天，几乎每一块蓝海，都会瞬间变为红海。所以只要创业，终有一天会面临跨越生死的考验，这时候，依靠的不是管理能力，而是领导力，领导力的核心，是甄别关键任务，然后动员大家穿越生死。</p>
+<h3 id="用户体验由内到外的五层要素"><a href="#用户体验由内到外的五层要素" class="headerlink" title="用户体验由内到外的五层要素"></a>用户体验由内到外的五层要素</h3><p><strong>战略存在层</strong>：清楚我们和用户要通过这个产品分别得到什么，用户为什么会依赖我们？要明白，你能存在，不是因为你厉害，而是别人需要你，能持续依赖你。</p>
+<p><strong>能力圈层</strong>：确定我们要做的事情和坚决不碰触的事情，以及具体提供什么样的确定性。</p>
+<p><strong>资源结构层</strong>：知晓谁是我们的敌人，谁是我们的朋友。</p>
+<p><strong>角色框架层</strong>：用于网站是框架，用于人世间是角色。</p>
+<p><strong>感知层</strong>：颜色、声音等感官体验。</p>
+<p>产品如此，看人亦如此。谈恋爱和买产品类似，关注的是最表层的用户体验。结婚和股权投资类似，最内的的三层更为关键：一个人对自己存在的自我设定、能力圈建设、资源建设。</p>
+<h3 id="一个好产品，从一个好故事开始"><a href="#一个好产品，从一个好故事开始" class="headerlink" title="一个好产品，从一个好故事开始"></a>一个好产品，从一个好故事开始</h3><p>用户研究，重要的不是零散地收集数据，拿数据证明自己的对错，而是建立一个有代表性的故事。</p>
+<p>用户体验地图就是通过画一张图，用一种讲故事的方式，从一个特定用户的角度出发，记录下他与产品或者服务进行接触、进入、互动的完整过程。</p>
+<p>画<strong>用户体验地图</strong>需要明确：</p>
+<ol>
+<li>一个画像完整的人物角色 </li>
+<li>用户的目标和预期 </li>
+<li>服务触点 </li>
+<li>用户使用路径 </li>
+<li>用户情绪曲线。</li>
+</ol>
+<h3 id="服务设计蓝图"><a href="#服务设计蓝图" class="headerlink" title="服务设计蓝图"></a>服务设计蓝图</h3><p>站在服务提供者的立场，在资源有限的情况下配置资源：</p>
+<ol>
+<li>让用户“一眼”看到自己的目标</li>
+<li>产品有一个清晰的路径</li>
+<li>不触碰用户的忍耐底线</li>
+<li>集中资源，打造优异的峰值体验</li>
+<li>提供令人回味的终值体验</li>
+</ol>
+<h3 id="上瘾机制-———-用户激励系统"><a href="#上瘾机制-———-用户激励系统" class="headerlink" title="上瘾机制 ——— 用户激励系统"></a>上瘾机制 ——— 用户激励系统</h3><p>游戏的动力，就是压力感突然被满足，压力释放的爽感、确定性的获得、激励的满足感结合在一起，会让人成瘾。</p>
+<p>内在激励来自人内心的饥渴感、满足感、愉悦感，是能够让人找到感觉，持续深入，把事情做到位的方式，内在激励不单是自己原生，还来自外部环境的激发、挤压和认同。</p>
+<p>外在激励是非常有力的短期改变用户行为的工具，比如奖金、名誉等奖励。</p>
+<p>我们需要做的是，将内在激励和外在激励相结合，设计受激励点，定义获得能力并努力降低门槛。</p>
+<p>王者荣耀在用户激励方面的成功：</p>
+<ol>
+<li>操作十分简单，对硬件设备和时间成本要求低，降低了用户门槛。</li>
+<li>54%女性玩家的围观，让男性用户之间的挤压更强烈，产生内在激励。</li>
+</ol>
+<h3 id="名字与口碑"><a href="#名字与口碑" class="headerlink" title="名字与口碑"></a>名字与口碑</h3><p>名字是召唤，是咒语，是主观的，它有情感温度，有文化偏见，有文化资产。判断一个名字是不是有力，在于能在对方心中召唤出一种什么样的情感。</p>
+<p>口碑是替消费者设计一句他要说的话，打造好的口碑就需要把事情做过头，雷军说：“只有超预期把事做过头，用户才会有深刻印象，才会有口碑转化的动力，也就是要从满意变成推荐。”</p>
+<h3 id="寻找属于你的蓝海"><a href="#寻找属于你的蓝海" class="headerlink" title="寻找属于你的蓝海"></a>寻找属于你的蓝海</h3><p>产品经理是以创造用户价值为工具，打破旧的利益平衡，建立对己方有利的新利益链。互联网创业就是挖条自己的沟，抢夺别人江河里的流量，形成自己的河流与生态。</p>
+<p>固定存量市场的争夺逻辑是强者为王、厚黑学、找靠山、向权力寻租、崇拜资源，不懂办公室政治，不会抱大腿的人，在旧有的竞争模型里是没有成功的机会的。</p>
+<p><strong>用户价值公式</strong>：用户价值= (新体验-旧体验)-替换成本。替换成本包括：品牌认知、获取成本、学习成本、使用成本以及在使用过程中遇到问题得到及时帮助的便利程度。</p>
+<p>同纬度竞争，一定是体量大的赢，即使它后发。对于大企业，用户替换成本极低，利用自身的体量优势，一点点优化用户体验，一点点挤压、蚕食小企业。几个体量差不多的竞争，就是红海战争，结果只有两种：1. 有能降级的企业出现 2. 资本意志强制合并，曾经的打车大战、外卖大战、共享单车大战莫不如此。</p>
+<p>互联网创业不要做存量竞争，而要寻求增量竞争，去创新，当你找到蓝海，找到没有大佬、用户体验为零的增量市场时，把产品做到60分的及格水平就要快速铺开市场，这是创业公司唯一改变命运的机会。</p>
+<h3 id="未来已来，只是分布得不均匀"><a href="#未来已来，只是分布得不均匀" class="headerlink" title="未来已来，只是分布得不均匀"></a>未来已来，只是分布得不均匀</h3><p>我们需要的某种能力要素，它可能已经产生并成熟了，只是它正在另外的某个领域被使用着。就看这个已经存在的未来，它会不会撞到你眼睛里，让你起心动念。这就是灵感的瞬间。</p>
+<h3 id="新产品一定要有新要素，否则没有竞争力"><a href="#新产品一定要有新要素，否则没有竞争力" class="headerlink" title="新产品一定要有新要素，否则没有竞争力"></a>新产品一定要有新要素，否则没有竞争力</h3><p>新要素有两种：</p>
+<ul>
+<li><p>第一种，在现有体验的基础上，运用最新科技等新要素，提升用户体验，或者改变成本结构。</p>
+</li>
+<li><p>第二种，用整个社会经济升级、产业升级所产生的其他领域新要素，变革内在的商业逻辑。也许用户的前端体验，依然是那个产品、那个服务，但公司背后的商业运作，已经成为了完全不同的新物种。</p>
+</li>
+</ul>
+<h3 id="理解互联网公司的三级火箭"><a href="#理解互联网公司的三级火箭" class="headerlink" title="理解互联网公司的三级火箭"></a>理解互联网公司的三级火箭</h3><p><strong>第一级</strong>：头部流量。<br><strong>第二级</strong>：沉淀某类用户的商业场景。<br><strong>第三级</strong>：完成商业闭环。</p>
+<p>玩三级火箭的必要条件：</p>
+<ol>
+<li>第一级火箭一定要高频应用，三级递推一定是高频推低频，没有低频推高频的。</li>
+<li>通过第一级火箭获得大量用户之后，要快速展开一个能够沉淀用户的商业场景。</li>
+<li>操纵三级火箭的人，一定是个势能积累到一定程度的人，比如强大的融资能力。</li>
+<li>操纵三级火箭的人，一定是个狠人，能够抢走别人用户的人。</li>
+</ol>
+<h3 id="颠覆式创新-——-开启一个新的价值网"><a href="#颠覆式创新-——-开启一个新的价值网" class="headerlink" title="颠覆式创新 —— 开启一个新的价值网"></a>颠覆式创新 —— 开启一个新的价值网</h3><p>真正决定企业未来发展方向的是市场价值网，而非管理者；真正主导企业发展进程的是机构以外的力量，而非机构内部的管理者。企业管理者要做的是识别自己赖以生存的价值网，建立一个组织与这个价值网进行资源对接。</p>
+<p>价值网中重要的三个角色：客户、对手、投资人。客户是我们最重要的资产，但要警惕为了迎合客户导致的创新盲区。对手可以激励我们成长，但要避免为了同对手竞争导致的不理智决策。要让投资人满意并加大投资力度，但要警惕资本所要求的增长带来的魔咒。</p>
+<p>一个组织的心智模式确定后很难改变，决定组织的整体思考模式，所以大公司向新价值网转型的过程是十分困难的。一旦一个新的价值网形成，就有新商业帝国产生的机会。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/产品经理/" rel="tag"># 产品经理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/30/openfire服务器搭建/" rel="next" title="openfire服务器搭建">
+                <i class="fa fa-chevron-left"></i> openfire服务器搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/19/小偷家族/" rel="prev" title="小偷家族">
+                小偷家族 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/images/avatar.png"
+                alt="Coyote" />
+            
+              <p class="site-author-name" itemprop="name">Coyote</p>
+              <p class="site-description motion-element" itemprop="description">移动互联网从业者</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/coyote1994" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#谈服务不谈产品"><span class="nav-number">1.</span> <span class="nav-text">谈服务不谈产品</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#企业是效率分工的产物，建立效率优势才有竞争力"><span class="nav-number">2.</span> <span class="nav-text">企业是效率分工的产物，建立效率优势才有竞争力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本规划能力是产品经理的重要能力。"><span class="nav-number">3.</span> <span class="nav-text">版本规划能力是产品经理的重要能力。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#领导力"><span class="nav-number">4.</span> <span class="nav-text">领导力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户体验由内到外的五层要素"><span class="nav-number">5.</span> <span class="nav-text">用户体验由内到外的五层要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个好产品，从一个好故事开始"><span class="nav-number">6.</span> <span class="nav-text">一个好产品，从一个好故事开始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务设计蓝图"><span class="nav-number">7.</span> <span class="nav-text">服务设计蓝图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上瘾机制-———-用户激励系统"><span class="nav-number">8.</span> <span class="nav-text">上瘾机制 ——— 用户激励系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#名字与口碑"><span class="nav-number">9.</span> <span class="nav-text">名字与口碑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寻找属于你的蓝海"><span class="nav-number">10.</span> <span class="nav-text">寻找属于你的蓝海</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#未来已来，只是分布得不均匀"><span class="nav-number">11.</span> <span class="nav-text">未来已来，只是分布得不均匀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新产品一定要有新要素，否则没有竞争力"><span class="nav-number">12.</span> <span class="nav-text">新产品一定要有新要素，否则没有竞争力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#理解互联网公司的三级火箭"><span class="nav-number">13.</span> <span class="nav-text">理解互联网公司的三级火箭</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#颠覆式创新-——-开启一个新的价值网"><span class="nav-number">14.</span> <span class="nav-text">颠覆式创新 —— 开启一个新的价值网</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Coyote</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

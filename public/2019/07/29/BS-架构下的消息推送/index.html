@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="推送," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="B/S 架构系统基本都使用HTTP 协议通信  所以首先来看看HTTP协议的特点：  列表内容 无状态性； 通过Internet发送请求消息和响应消息； 使用端口接收和发送消息，默认为80端口；但是底层还是使用Socket完成。   HTTP协议决定了服务器与客户端之间的连接方式，无法直接实现消息推送。">
+<meta name="keywords" content="推送">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BS 架构下的消息推送">
+<meta property="og:url" content="http://yoursite.com/2019/07/29/BS-架构下的消息推送/index.html">
+<meta property="og:site_name" content="Coyote">
+<meta property="og:description" content="B/S 架构系统基本都使用HTTP 协议通信  所以首先来看看HTTP协议的特点：  列表内容 无状态性； 通过Internet发送请求消息和响应消息； 使用端口接收和发送消息，默认为80端口；但是底层还是使用Socket完成。   HTTP协议决定了服务器与客户端之间的连接方式，无法直接实现消息推送。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/07/29/BS-架构下的消息推送/01.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/29/BS-架构下的消息推送/02.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/29/BS-架构下的消息推送/03.png">
+<meta property="og:updated_time" content="2019-07-29T07:41:01.646Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BS 架构下的消息推送">
+<meta name="twitter:description" content="B/S 架构系统基本都使用HTTP 协议通信  所以首先来看看HTTP协议的特点：  列表内容 无状态性； 通过Internet发送请求消息和响应消息； 使用端口接收和发送消息，默认为80端口；但是底层还是使用Socket完成。   HTTP协议决定了服务器与客户端之间的连接方式，无法直接实现消息推送。">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/29/BS-架构下的消息推送/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/29/BS-架构下的消息推送/"/>
+
+
+
+
+
+  <title>BS 架构下的消息推送 | Coyote</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Coyote</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">奔跑中的IT男</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/29/BS-架构下的消息推送/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Coyote">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coyote">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BS 架构下的消息推送</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-29T15:09:16+08:00">
+                2019-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Html/" itemprop="url" rel="index">
+                    <span itemprop="name">Html</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>B/S 架构系统基本都使用HTTP 协议通信</p>
+<blockquote>
+<p>所以首先来看看HTTP协议的特点：</p>
+<ul>
+<li>列表内容</li>
+<li>无状态性；</li>
+<li>通过Internet发送请求消息和响应消息；</li>
+<li>使用端口接收和发送消息，默认为80端口；但是底层还是使用Socket完成。</li>
+</ul>
+</blockquote>
+<p>HTTP协议决定了服务器与客户端之间的连接方式，无法直接实现消息推送。 </p>
+<a id="more"></a>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="1-轮询："><a href="#1-轮询：" class="headerlink" title="1. 轮询："></a>1. 轮询：</h4><p>客户端定时向服务器发送Ajax请求，服务器接到请求后马上返回响应信息，并关闭连接。</p>
+<blockquote>
+<p>什么是 AJAX ？</p>
+<p>AJAX = 异步 JavaScript 和 XML。<br>AJAX 不是新的编程语言，而是一种使用现有标准的新方法，一种用于创建快速动态网页的技术。<br>通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。传统的网页（不使用AJAX）如果需要更新内容，必需重载整个网页面。有很多使用AJAX的应用程序案例：新浪微博、Google地图  等。</p>
+</blockquote>
+<ul>
+<li><strong>优点</strong>：后端程序编写比较容易 </li>
+<li><strong>缺点</strong>：请求中大半是无用的，浪费带宽和服务器资源 </li>
+<li><strong>实例</strong>：适用于小型应用</li>
+</ul>
+<h4 id="2-长轮询："><a href="#2-长轮询：" class="headerlink" title="2. 长轮询："></a>2. 长轮询：</h4><p>客户端向服务器发送Ajax请求，服务器接到请求后Hold住连接，直到有新消息才返回响应信息，并关闭连接；客户端处理完响应信息后再向服务器发送新的请求。</p>
+<ul>
+<li><strong>优点</strong>：在无消息的情况下不会频繁的请求，耗费的资源少 </li>
+<li><strong>缺点</strong>：服务器Hold住连接会消耗资源，返回数据顺序无法保证，难于管理和维护 </li>
+<li><strong>实例</strong>：WebQQ、Hi网页版、FaceBook IM等</li>
+</ul>
+<img src="/2019/07/29/BS-架构下的消息推送/01.png">
+<h4 id="3-长连接："><a href="#3-长连接：" class="headerlink" title="3. 长连接："></a>3. 长连接：</h4><p>在页面中嵌入一个隐藏的jframe，将这个隐藏的iframe的src属性设置为对一个长连接的请求或者采用XRH请求，服务器端就能源源不断地往客户端输入数据。</p>
+<ul>
+<li><strong>优点</strong>：消息即时到达，不发无用的请求；管理起来也相对方便 </li>
+<li><strong>缺点</strong>：服务器维护一个长连接会增加开销 </li>
+<li><strong>实例</strong>：Gmail聊天</li>
+</ul>
+<img src="/2019/07/29/BS-架构下的消息推送/02.png">
+<h4 id="4-Flash-Socket："><a href="#4-Flash-Socket：" class="headerlink" title="4. Flash Socket："></a>4. Flash Socket：</h4><p>在页面中嵌入一个使用了Socket类的Flash程序，JavaScript通过调用此Flash程序提供的Socket接口与服务器端的Socket接口进行通信，JavaScript在收到服务器端传送的信息后控制页面的显示。</p>
+<ul>
+<li><strong>优点</strong>：实现真正的即时通信，而不是伪即时 </li>
+<li><strong>缺点</strong>：客户端必须安装Flash插件；非HTTP协议，无法自动穿越防火墙 </li>
+<li><strong><strong>实例</strong></strong>：网络互动游戏</li>
+</ul>
+<h4 id="5-WebSocket："><a href="#5-WebSocket：" class="headerlink" title="5. WebSocket："></a>5. WebSocket：</h4><p>WebSocket 是 HTML5 开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。</p>
+<p>WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在 WebSocket API 中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的长连接，并进行双向实时数据传输。</p>
+<ul>
+<li><strong>优点</strong>：事件驱动；异步；使用WS或者WSS协议的客户端Socket；能够实现真正意义上的推送功能，更好的节省服务器资源和带宽 </li>
+<li><strong>缺点</strong>：少部分浏览器不支持，不同浏览器支持的程度和方式都不同</li>
+</ul>
+<h3 id="了解-WebSocket"><a href="#了解-WebSocket" class="headerlink" title="了解 WebSocket"></a>了解 WebSocket</h3><p>WebSocket 协议本质上是一个基于 TCP 的协议。</p>
+<p>为了建立一个 WebSocket 连接，客户端浏览器首先要向服务器发起一个 HTTP 请求（<strong>websocket握手需要借助于http协议，建立连接后通信过程使用websocket协议</strong>），这个请求和通常的 HTTP 请求不同，包含了一些附加头信息，其中附加头信息”Upgrade: WebSocket”表明这是一个申请协议升级的 HTTP 请求，服务器端解析这些附加的头信息然后产生应答信息返回给客户端，客户端和服务器端的 WebSocket 连接就建立起来了，双方就可以通过这个连接通道自由的传递信息，并且这个连接会持续存在直到客户端或者服务器端的某一方主动的关闭连接。</p>
+<img src="/2019/07/29/BS-架构下的消息推送/03.png">
+<p>Websocket 使用 ws 或 wss 的统一资源标志符，类似于 HTTPS，其中 wss 表示在 TLS 之上的 Websocket。如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ws://example.com/wsapi</span><br><span class="line">wss://secure.example.com/</span><br></pre></td></tr></table></figure>
+<p>Websocket 使用和 HTTP 相同的 TCP 端口，可以绕过大多数防火墙的限制。默认情况下，Websocket 协议使用 80 端口；运行在 TLS 之上时，默认使用 443 端口。</p>
+<p>当获取到 Web Socket 连接后，可以通过 <strong>send()</strong> 方法来向服务器发送数据，并通过 <strong>onmessage</strong> 事件来接收服务器返回的数据。</p>
+<p>下面 API 用于创建 WebSocket 对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 创建 WebSocket 对象</span><br><span class="line"> * url：指定连接的 URL</span><br><span class="line"> * protocol:是可选的，指定了可接受的子协议。</span><br><span class="line"> */</span><br><span class="line">var Socket = new WebSocket(url, [protocol] );</span><br></pre></td></tr></table></figure>
+<h4 id="websocket-与-socket-的区别"><a href="#websocket-与-socket-的区别" class="headerlink" title="websocket 与 socket 的区别"></a>websocket 与 socket 的区别</h4><p>软件通信有七层结构，下三层结构偏向与数据通信，上三层更偏向于数据处理，中间的传输层则是连接上三层与下三层之间的桥梁，每一层都做不同的工作，上层协议依赖与下层协议。</p>
+<p>基于这个通信结构的概念<br>，Socket 其实并不是一个协议，是为了便于程序员进行网络编程而产生的，是应用层与 TCP/IP 协议族通信的中间软件抽象层，是一组接口。当两台主机通信时，让 Socket 去组织数据，以符合指定的协议。TCP 连接则更依靠于底层的 IP 协议，IP 协议的连接则依赖于链路层等更低层次。</p>
+<p>websocket 是 html5 规范中的一个部分，它借鉴了 socket 这种思想，为 web 应用程序客户端和服务端之间（注意是客户端服务端）提供了一种全双工通信机制。同时，它又是一种新的应用层协议，websocket 协议是为了提供 web 应用程序和服务端全双工通信而专门制定的一种应用层协议。</p>
+<p><strong>总的来说：Socket 是传输控制层接口封装，WebSocket 是应用层协议。</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/推送/" rel="tag"># 推送</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/22/BYTE数组转string/" rel="next" title="BYTE数组转string">
+                <i class="fa fa-chevron-left"></i> BYTE数组转string
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/29/前端工具之gulp/" rel="prev" title="前端工具之gulp">
+                前端工具之gulp <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/images/avatar.png"
+                alt="Coyote" />
+            
+              <p class="site-author-name" itemprop="name">Coyote</p>
+              <p class="site-description motion-element" itemprop="description">移动互联网从业者</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/coyote1994" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">1.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-轮询："><span class="nav-number">1.1.</span> <span class="nav-text">1. 轮询：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-长轮询："><span class="nav-number">1.2.</span> <span class="nav-text">2. 长轮询：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-长连接："><span class="nav-number">1.3.</span> <span class="nav-text">3. 长连接：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Flash-Socket："><span class="nav-number">1.4.</span> <span class="nav-text">4. Flash Socket：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-WebSocket："><span class="nav-number">1.5.</span> <span class="nav-text">5. WebSocket：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#了解-WebSocket"><span class="nav-number">2.</span> <span class="nav-text">了解 WebSocket</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#websocket-与-socket-的区别"><span class="nav-number">2.1.</span> <span class="nav-text">websocket 与 socket 的区别</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Coyote</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
